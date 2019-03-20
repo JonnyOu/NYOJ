@@ -1,41 +1,24 @@
-/*
-17.¶¯Ì¬¹æ»® 
-
-*/
-
-#include<cstdio>
-#include<string>
-#include<cstring>
-#include<iostream>
+#include <bits/stdc++.h>
 using namespace std;
+
+int a[10005];
 
 int main() {
 	int T;
-	scanf("%d", &T);
+	cin >> T;
 	while (T--) {
 		string s;
 		cin >> s;
-		int n = s.size(), a[n], x;
-		bool flag;
-		memset(a, 0, n*sizeof(int));
-		a[0] = 1;
-		for (int i = 1; i < n; i++) {
-			x = 0; flag = false;
-			for (int j = 0; j < i; j++) {
-				if (s[j] < s[i] && a[j] >= a[x]) {
-					flag = true;
-					x = j;
-				}
-			}
-			if (flag == true) {
-				a[i] = a[x] + 1;
-			}
-			else a[i] = 1;
-		}
-		x = 0;
-		for (int i = 0; i < n; i++) 
-			if (a[i] > a[x]) x = i;
-		cout << a[x] << endl;
+		memset(a, 0, sizeof(a));
+		for (int i = 1; i < s.size(); i++)
+			for (int j = 0; j < i; j++)
+				if (s[i] > s[j])
+					a[i] = max(a[i], a[j]+1);
+		int m = 0;
+		for (int i = 0; i < s.size(); i++)
+			if (m < a[i]) m = a[i];
+		cout << m+1 << endl;
 	}
 	return 0;
 }
+
