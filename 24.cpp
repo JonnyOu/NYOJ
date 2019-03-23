@@ -54,9 +54,8 @@ const int maxSize = 1000005;
 int a[maxSize];
 
 int main() {
-	memset(a, 0, sizeof(a));
-	a[0] = 1; a[1] = 1; a[2] = 0;  //素数筛选 
-	for (int i = 2; i < maxSize/2; i++) {
+	a[0] = 1; a[1] = 1;  //素数筛选
+ 	for (int i = 2; i < maxSize/2; i++) {
 		if (!a[i]) {
 			for (int j = 2; i*j < maxSize; j++)
 				a[i*j] = 1;
